@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Virtualizing my development environment - Jeroen Tietema</title>
+  <meta name="author" content="Jeroen Tietema">
+
+  
+  <meta name="description" content="Virtualizing My Development Environment Last week I have been busy moving my development environment from my laptop to a virtual server running on &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jtietema.github.com/blog/2009/08/14/virtualizing-my-development-environment/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jeroen Tietema" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">Jeroen Tietema</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">Jeroen Tietema</a></h1>
+  </li>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">/dev/null</h2>
+  </li>
+
+  <li class="link">
+    <a href="/about/">about</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/jtietema/">github</a>
+  </li>
+
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jtietema.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<!-- Octopress Love -->
+<aside id="octopress_linkback">
+  <a href="http://octopress.org/">
+    <span class="unicode_square">
+      <span class="unicode_circle">
+        &nbsp;
+      </span>
+    </span>
+    <span class="octopress">Powered by Octopress</span>
+  </a>
+</aside>
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">Virtualizing My Development Environment</h2>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+<p>Last week I have been busy moving my development environment from my laptop to a virtual server running on my laptop. This my seem like a hassle and the advantages are not all obvious, so I would like to share my findings and the specifics of my setup that I settled on.</p>
+
+<h3>Security / Privacy</h3>
+
+
+<p>First I would like to point out the problems I had with my current setup.The most urgent concern I had was that if my laptop would get stolen all my projects would be out in the open. I use the laptop primarily for my company projects and thus contains at lot of information from my clients. Think about copies of a database with maybe lots of user account information. It would be bad if my company would be responsible for the leaking of private information of other company&#8217;s. It is clear that I needed a way to protect my information (probably encryption), but I didn&#8217;t want it to get to much in my way.</p>
+
+<h3>It should just work</h3>
+
+
+<p>My primary OS is Archlinux. As a desktop OS it suits my needs just fine. I like to tweak things and it runs very fast. On the other hand I am very used to Ubuntu and typically setting up a LAMP environment is less work on Ubuntu that it is on Archlinux. It also matches better with the servers we deploy on and the other developers are also Ubuntu users.</p>
+
+<p>Most important my development environment should just work ALWAYS! I&#8217;ve had some occasions that I reinstalled my system and forgot to install some tools only to discover at an appointment with a client. Not good&#8230; Isolating the development environment from my host OS enables me to chose a different environment and also allows me to preserve it during reinstalls of the host OS.</p>
+
+<h2>The setup</h2>
+
+
+<p>Enough blabla, on with the details. For virtualization I used <a title="Virtualbox" href="http://virtualbox.org">Virtualbox</a>. I haven&#8217;t used anything else and directly admit I use it for its simplicity. As a guest OS I use <a title="Ubuntu server" href="http://www.ubuntu.com/getubuntu/download-server">Ubuntu Server</a>. I installed it with encrypted LVM. This way all data inside the virtual server is encrypted (and thus sort of safe). This safes me from all the trouble of keeping track where my database is stored and where my documentroot is from the webserver and if they are exposed or not.</p>
+
+<h3>Networking</h3>
+
+
+<p>So far all has been nice. But I can&#8217;t use my virtual server without access to it. There are a number of options to try and I will discuss 2 possible setups.</p>
+
+<p>First I went for bridged networking. This way the virtual server will appear in the same network as the host. This is quite flexible and only has two problems. The first being that it is not always good to have your virtual server accessible for the hole network (for instance when connecting directly to the internet or hotel wireless). Second is more of a bug and that is that it just not always works on all networks. Some routers just don&#8217;t seem to get it when two operating systems request an ip from one physical network card.</p>
+
+<p>To solve the to issues a made a second setup. This time I configure two network cards on the virtual server. One uses NAT and is primarily for internet access. The second uses host-only networking and is used by myself for accessing the virtual server. This has some advantages. First being that it works on buggy routers and second, it makes the network layout much more predictable as you have your own internal network address space. This allows you to hard code the network addresses in scripts. The only disadvantage of this setup is that other computers can&#8217;t access the server.</p>
+
+<p>At the moment I use the second solution. Maybe I will switch the NAT to bridged networking when the routers allow it, but I&#8217;m not sure if I will need it. The host only network is great and saves me the trouble of looking up the ip from my server every time. I can now use a script to mount the document root using NFS.</p>
+
+<p>Hope this was useful comments are welcome.</p>
+
+<p>cheers.</p>
+
+
+
+</article>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

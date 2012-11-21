@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Jeroen Tietema]]></title>
+  <link href="http://jtietema.github.com/atom.xml" rel="self"/>
+  <link href="http://jtietema.github.com/"/>
+  <updated>2012-11-21T17:56:30+01:00</updated>
+  <id>http://jtietema.github.com/</id>
+  <author>
+    <name><![CDATA[Jeroen Tietema]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Virtualizing my development environment]]></title>
+    <link href="http://jtietema.github.com/blog/2009/08/14/virtualizing-my-development-environment/"/>
+    <updated>2009-08-14T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2009/08/14/virtualizing-my-development-environment</id>
+    <content type="html"><![CDATA[<p>Last week I have been busy moving my development environment from my laptop to a virtual server running on my laptop. This my seem like a hassle and the advantages are not all obvious, so I would like to share my findings and the specifics of my setup that I settled on.</p>
+
+<h3>Security / Privacy</h3>
+
+
+<p>First I would like to point out the problems I had with my current setup.The most urgent concern I had was that if my laptop would get stolen all my projects would be out in the open. I use the laptop primarily for my company projects and thus contains at lot of information from my clients. Think about copies of a database with maybe lots of user account information. It would be bad if my company would be responsible for the leaking of private information of other company&#8217;s. It is clear that I needed a way to protect my information (probably encryption), but I didn&#8217;t want it to get to much in my way.</p>
+
+<h3>It should just work</h3>
+
+
+<p>My primary OS is Archlinux. As a desktop OS it suits my needs just fine. I like to tweak things and it runs very fast. On the other hand I am very used to Ubuntu and typically setting up a LAMP environment is less work on Ubuntu that it is on Archlinux. It also matches better with the servers we deploy on and the other developers are also Ubuntu users.</p>
+
+<p>Most important my development environment should just work ALWAYS! I&#8217;ve had some occasions that I reinstalled my system and forgot to install some tools only to discover at an appointment with a client. Not good&#8230; Isolating the development environment from my host OS enables me to chose a different environment and also allows me to preserve it during reinstalls of the host OS.</p>
+
+<h2>The setup</h2>
+
+
+<p>Enough blabla, on with the details. For virtualization I used <a title="Virtualbox" href="http://virtualbox.org">Virtualbox</a>. I haven&#8217;t used anything else and directly admit I use it for its simplicity. As a guest OS I use <a title="Ubuntu server" href="http://www.ubuntu.com/getubuntu/download-server">Ubuntu Server</a>. I installed it with encrypted LVM. This way all data inside the virtual server is encrypted (and thus sort of safe). This safes me from all the trouble of keeping track where my database is stored and where my documentroot is from the webserver and if they are exposed or not.</p>
+
+<h3>Networking</h3>
+
+
+<p>So far all has been nice. But I can&#8217;t use my virtual server without access to it. There are a number of options to try and I will discuss 2 possible setups.</p>
+
+<p>First I went for bridged networking. This way the virtual server will appear in the same network as the host. This is quite flexible and only has two problems. The first being that it is not always good to have your virtual server accessible for the hole network (for instance when connecting directly to the internet or hotel wireless). Second is more of a bug and that is that it just not always works on all networks. Some routers just don&#8217;t seem to get it when two operating systems request an ip from one physical network card.</p>
+
+<p>To solve the to issues a made a second setup. This time I configure two network cards on the virtual server. One uses NAT and is primarily for internet access. The second uses host-only networking and is used by myself for accessing the virtual server. This has some advantages. First being that it works on buggy routers and second, it makes the network layout much more predictable as you have your own internal network address space. This allows you to hard code the network addresses in scripts. The only disadvantage of this setup is that other computers can&#8217;t access the server.</p>
+
+<p>At the moment I use the second solution. Maybe I will switch the NAT to bridged networking when the routers allow it, but I&#8217;m not sure if I will need it. The host only network is great and saves me the trouble of looking up the ip from my server every time. I can now use a script to mount the document root using NFS.</p>
+
+<p>Hope this was useful comments are welcome.</p>
+
+<p>cheers.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Current projects]]></title>
+    <link href="http://jtietema.github.com/blog/2009/03/25/current-projects/"/>
+    <updated>2009-03-25T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2009/03/25/current-projects</id>
+    <content type="html"><![CDATA[<p>It&#8217;s about time I started blogging about my game projects. As part of a research semester for my study I&#8217;m building some prototype games to explore game development in Python. Our first one, <a title="Pyrio" href="http://tietema.net/pyrio">Pyrio</a>, is already done and turned out to be quite nice. The second, <a title="Tank-battle" href="http://bitbucket.org/jtietema/tank-battle/">tank-battle</a>, is lagging a bit behind our own expectations but is nevertheless quite nice, though I don&#8217;t plan to do all the packaging stuff for this one.</p>
+
+<p>Pyrio is a Mario clone. It uses graphics and sounds from <a title="Secret Maryo Chronicals" href="http://www.secretmaryo.org/">Secret Maryo Chronicals</a> and is written with <a title="Pygame" href="http://www.pygame.org">Pygame</a>. One of our findings was that rendering with Pygame was much to slow so for Tank-battle we started using <a title="Cocos2d" href="http://www.cocos2d.org">Cocos2d</a> / <a title="Pyglet" href="http://www.pyglet.org">Pyglet</a>. Tank-battle is not really a game but more a tech-demo. It plays with networking and AI. The networking part is built on top of Twisted and works quite well. We even built some interpolation code on the client which makes prevents opponents from jittering around the screen. We are now in the process of building some path finding into some computer players and make them do smart things. But time is almost up as tomorrow will be the last day of development and we ain&#8217;t got anything battle related, so it&#8217;s just tanks for now ;-)</p>
+
+<p>In the upcoming weeks we will build a 3D prototype, participate in the <a title="Pyweek" href="http://www.pyweek.org">Pyweek</a> and further develop our Pyweek game afterwards. In the meantime, try <a title="Pyrio" href="http://tietema.net/pyrio">Pyrio</a> ;-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Blog moved to new host]]></title>
+    <link href="http://jtietema.github.com/blog/2009/02/17/blog-moved-to-new-host/"/>
+    <updated>2009-02-17T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2009/02/17/blog-moved-to-new-host</id>
+    <content type="html"><![CDATA[<p>When you read this my blog is moved to my new host. :-) Bye Servage</p>
+
+<p>I will be sharing a VPS @ <a title="Slicehost" href="http://www.slicehost.com">slicehost</a> with <a title="Ronald" href="http://www.ronaldvanzuijlen.nl">Ronald</a> and <a title="Mattijs" href="http://www.monkeyandmachine.com">Mattijs</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Security problems Servage]]></title>
+    <link href="http://jtietema.github.com/blog/2009/01/12/security-problems-servage/"/>
+    <updated>2009-01-12T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2009/01/12/security-problems-servage</id>
+    <content type="html"><![CDATA[<p>Revived my blog today. It seems my servage account got hacked and some worm destroyed my index.php file. <a href="http://www.google.nl/search?q=servage+hacked">A quick google search</a> revealed that I am certainly not the first.</p>
+
+<p>Time to start thinking about new hosting as this is probably not going to end any time soon.</p>
+
+<p>I was thinking about runnig my own vps so I can also run other services. Anyone (other) suggestions?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Launchpad, games and python]]></title>
+    <link href="http://jtietema.github.com/blog/2008/12/31/launchpad-games-and-python/"/>
+    <updated>2008-12-31T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2008/12/31/launchpad-games-and-python</id>
+    <content type="html"><![CDATA[<p>Just wanted to let everyone know that I use <a title="My code on Launchpad" href="https://code.launchpad.net/~jtietema">Launchpad</a> now to host my personal projects. On Launchpad you have your own personal +junk project in which you can host branches that do not belong to a project on Launchpad. In other words it is a perfect playground for little pet-projects. :-)</p>
+
+<p>I&#8217;ve been working on a Sub Hunt game lately. It has been amazing how quick you can get a game together with python and pygame. At the time of writing a spend about 4 hours on the game. It is off course very basic and far from finished. But in another 2 - 4 hours it can be almost done. At the moment it contains only three levels, but creating levels is as simple as defining which and how much submarines are in the level.</p>
+
+<p>So <a title="Subhunt" href="https://code.launchpad.net/~jtietema/subhunt/trunk">check it out</a> and let me know what you think. Ideas on how to expand the game are most welcome. :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Internship update]]></title>
+    <link href="http://jtietema.github.com/blog/2008/11/13/internship-update/"/>
+    <updated>2008-11-13T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2008/11/13/internship-update</id>
+    <content type="html"><![CDATA[<p>So nearly another month has passed and I&#8217;ve been busy with quite a lot of different things. First my tagging add-on for Hippo ECM is coming along nicely. You can add tags to a document and it pops-up some suggestions beneath them (they aren&#8217;t really good suggestions yet but they are there).</p>
+
+<p>To test my tagging add-on I needed some content so I wrote a converter which converts a Wikipedia XML dump into a XML import for Hippo ECM. The script takes the number of articles you want to create in the import as an argument, so I now have imports ranging from a hundred articles to about a hundred thousand articles.</p>
+
+<p>My third project for this month was to create a tag cloud which would enable a user to browse documents by tag.</p>
+
+<p>So after all these details I bring you: The Screenshot :-) (click for a larger version)</p>
+
+<p><a href="http://jtietema.github.com/images/tagcloud2.png"><img class="size-medium wp-image-40" title="Tag cloud" src="http://jtietema.github.com/images/tagcloud2-300x114.png" alt="Tagging in Hippo ECM" width="300" height="114" /></a></p>
+
+<p>On the left is the tag cloud (needs some layout work still), the center shows the documents with the tag &#8220;Living people&#8221; and the lower right shows current tags and suggestions belonging to the document.</p>
+
+<p>The suggestion system is quite dumb. It suggests the most common tags at the moment. The coming weeks I will work on a more smart suggestion system. I plan to experiment with:</p>
+
+<ul>
+    <li>searching tags related to the already assigned tags.</li>
+    <li>searching for existing tags in document body and title</li>
+    <li>searching for tags from embedded documents (images, download-able documents, etc.)</li>
+</ul>
+
+
+<p>Enough for now. I need to get back to work :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Captcha]]></title>
+    <link href="http://jtietema.github.com/blog/2008/11/13/captcha/"/>
+    <updated>2008-11-13T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2008/11/13/captcha</id>
+    <content type="html"><![CDATA[<p>I installed a Captcha on my blog to allow anonymous comments. Please let me know if you like it or hate it. Registered users will not see the Captcha so if you hate than registering is an option ;-)</p>
+
+<p><em>Update:</em> This captcha thing was a complete disaster. I got 200 spam messages within a day after activating it. So I disabled it again :-( Suggestions are still welcome.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Internship @ Hippo]]></title>
+    <link href="http://jtietema.github.com/blog/2008/10/17/internship-hippo/"/>
+    <updated>2008-10-17T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2008/10/17/internship-hippo</id>
+    <content type="html"><![CDATA[<p>So whats become of me lately? Some of you mite not have heard much of me since the holidays.</p>
+
+<p>Well I&#8217;m still here. I&#8217;m busy with my internship at Hippo at the moment, so I thought it might be nice to give a headsup on what I am doing here exactly. :-) My internship started back in september and since then I&#8217;ve spend quite some time on getting to know the Hippo ECM code base and getting used to Wicket. To accomplish that I wrote a few frontend plug-ins for Hippo ECM. See below for a list of screenshots. Some of them actually got demo&#8217;ed. :-)</p>
+
+<p><img title="Colleague Tracker" src="http://colleaguetrack.forge.hippo-ecm.org/images/colleaguetracker.png" alt="Shows a list of recent user activity" width="546" height="270" /></p>
+
+<p><img title="Last 5 Images" src="http://lastimages.forge.hippo-ecm.org/images/lastimages.png" alt="Show the last 5 uploaden images" width="551" height="257" /></p>
+
+<p>During my internship I will write a bigger plug-in. This plug-in will assist users with assigning good keywords (tags) to their content. Basically it will look for related content and suggest the most common keywords from all related content. The system will not create new keywords, but instead feed on the collection of keywords already assigned to the content. No real AI there but more like &#8220;Collective Intelligence&#8221;.</p>
+
+<p>The challenge is making the performance impact minimal. I will be doing al lot of queries to the backend (Jackrabbit repository) and I don&#8217;t want to hammer the thing when just searching for some tags :-)</p>
+
+<p>I&#8217;ll post some more screenshots and updates soon, for now my blog software is a bit broken (can&#8217;t upload images to my own server and preview post some how seems broken too). I suspect it has something to do with some server reorganisations @ servage some time ago :-(</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zend Certified Engineer widget]]></title>
+    <link href="http://jtietema.github.com/blog/2008/06/27/zend-certified-engineer-widget/"/>
+    <updated>2008-06-27T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2008/06/27/zend-certified-engineer-widget</id>
+    <content type="html"><![CDATA[<p>What does one do when he is bored? Write a wordpress plugin. I wanted to update my blog for some time now with my ZCE logo, so I thought why not write a plugin to do so. I noticed that there was a text widget, which doesn&#8217;t make it much harder to update your site with the logo, but that is no fun so <a title="ZCE widget" href="http://jtietema.github.com/zce-widget">here is a special ZCE widget</a>.</p>
+
+<p>Feedback is most welcome. Enjoy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Update]]></title>
+    <link href="http://jtietema.github.com/blog/2008/06/24/update/"/>
+    <updated>2008-06-24T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2008/06/24/update</id>
+    <content type="html"><![CDATA[<p>So it&#8217;s been to long since my last update. I&#8217;ve been quite busy with my study as the vacation approaches. Below I&#8217;ll sum up some things that have kept me busy.</p>
+
+<ul>
+    <li>Zend Certification: I passed, as most of you know by now. Will have to find time to integrate a button/link to <a title="My Profile" href="http://www.zend.com/store/education/certification/authenticate.php?ClientCandidateID=ZEND007565&amp;RegistrationID=225069027">my profile in the Zend yellow pages</a>.</li>
+    <li>Hardware &amp; KDE: I&#8217;ve received my new computer I ordered from <a title="ZaReason" href="http://www.zareason.de/">ZaReason</a> and it is awesome. I installed KDE 4.1 beta 1 and am very happy with how well it runs. Only Konqueror and Dolphin crash a lot, but that will probably to improve over time. In the meantime, Firefox 3 and Opera 9.5 do the job just fine.</li>
+    <li>Voidwalkers: As the pressure of incoming projects and stuff is dropping, we finally have some time to think of new innovative things. We exploring the possibilities of generating Zend Framework applications. At the moment we have a small plugin based command-line application and have some handy plugins that make our live easier. For instance we can generate a project structure (directories and so) and we can generate table classes from the database (with relations). So that&#8217;s pretty cool. So controllers and views with basic form operations are next :-)</li>
+    <li>Study: I&#8217;ve had my last exams. Will have to finish my last assignments the next two weeks. After the summer I will start my internship at <a title="Hippo" href="http://www.hippo.nl">hippo</a>. I&#8217;m really looking forward to that as the company looks really as a nice place to work. Will post some more updates as the appear.</li>
+</ul>
+
+
+<p>So some things I am looking forward to:</p>
+
+<ul>
+    <li>Vacation! Relaxation and road tripping with my girlfriend.</li>
+    <li>KDE 4.1 Release @ 29 July. KDE 4 will finally be ready for general purpose use.</li>
+    <li>More time to work on personal projects.</li>
+</ul>
+
+
+<p>So time for me to get productive again. :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zend PHP Certification]]></title>
+    <link href="http://jtietema.github.com/blog/2008/04/18/zend-php-certification/"/>
+    <updated>2008-04-18T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2008/04/18/zend-php-certification</id>
+    <content type="html"><![CDATA[<p>I finally scheduled my Zend PHP Certification exam. The showdown will be on 29th of April. I really hope that Mattijs (who is also taking the exam) and I will both pass. It will surely help give our company a more professional image.</p>
+
+<p>Also I found <a href="https://www.zareason.de/shop/product.php?productid=7&amp;cat=0&amp;page=1">a really nice desktop</a> computer to replace my old one. I would like to upgrade it to an E8400, 8GB of RAM and an 500GB disk. The only thing is the shop is in Germany and I find shipping my PC internationally a bit risky. Any one any experience with this? The cool thing is they ship it with Linux pre-installed :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Teeworlds]]></title>
+    <link href="http://jtietema.github.com/blog/2008/04/02/teeworlds/"/>
+    <updated>2008-04-02T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2008/04/02/teeworlds</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve been wanting to write a post about linux games I play, but somehow I never find the time to finish big time reviews so this will be just a small post about a game I discovered today.</p>
+
+<p><a href="http://jtietema.github.com/images/teeworlds2-300x225.jpg"><img style="float:right;" class="alignright size-medium wp-image-26" title="teeworlds2" src="http://jtietema.github.com/images/teeworlds2-300x225.jpg" alt="Teeworlds" width="300" height="225" /></a><a title="Teeworlds" href="http://www.teeworlds.com/">Teeworlds</a> reminds me a lot of the old days were Quake 1 &amp; 2 where popular. It is actually something like Quake 2D.  It has DM, TDM  and CTF gameplay modes. It&#8217;s multiplayer only (LAN and Internet) but there are a lot of servers, so that&#8217;s no problem.</p>
+
+<p>Installation is a breeze, just download the archive, extract and you&#8217;re good to go.</p>
+
+<p>Have fun!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Verhuisd]]></title>
+    <link href="http://jtietema.github.com/blog/2008/01/31/verhuisd/"/>
+    <updated>2008-01-31T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2008/01/31/verhuisd</id>
+    <content type="html"><![CDATA[<p>&#8220;Twitter&#8221;:http://twitter.com/jtietema is weer eens down (mijn nieuwe verslaving), dus maar eens een echte blogpost schrijven ;-)</p>
+
+<p>Eindelijk heb ik zo&#8217;n beetje mijn verhuizing achter de rug. Ben nu bijna een maand bezig geweest met klussen en verhuizen. Had gehoopt vandaag en morgen een beetje rust te hebben (ben vrij van de studie), maar dat valt vies tegen. Stiekem is er nog teveel op mijn todo-list.</p>
+
+<p>Zaterdag ga ik op vakantie, lekker een weekje off-piste boarden met de klimmers. :-) Ik kijk er nu al naar uit en heb flink nieuwe gear ingeslagen. :-)</p>
+
+<p>Op het moment wil het niet echt lukken met persoonlijke projectjes. Ik heb teveel te doen voor werk en studie. Hierdoor wordt het lijstje alleen maar langer :-?
+Een voorproefje ervan vind je hieronder:</p>
+
+<ul>
+<li>PDF concatinator met Zend PDF lib</li>
+<li>Soort van planet software in php</li>
+<li>Mijn blog pimpen met wat coole extensies en een betere (eigen) theme</li>
+<li>KDE een keertje van source compilen</li>
+<li>SSH kamer zoek bot schrijven</li>
+<li>SMS notifieren applicatie schrijven</li>
+</ul>
+
+
+<p>Kortom ik zou wel een weekje vakantie kunnen gebruiken :-|</p>
+
+<p>Toffe dingen die je niet moet missen:</p>
+
+<ul>
+<li>&#8220;Zend Framework 1.5 Preview Release&#8221;:http://framework.zend.com</li>
+<li>&#8220;KDE 4.0.1 update&#8221;:http://www.kde.org/announcements/changelogs/changelog4_0to4_0_1.php (duurt nog een paar dagen voordat hij gepackaged is denk ik)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Class generator PHP5]]></title>
+    <link href="http://jtietema.github.com/blog/2007/12/06/class-generator-php5/"/>
+    <updated>2007-12-06T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2007/12/06/class-generator-php5</id>
+    <content type="html"><![CDATA[<p>Afgelopen week hadden we een discussie binnen Voidwalkers over hoe we precies onze klassen moeten opbouwen voor ons urenregistratie applicatie. Om een lang verhaal kort te maken ging het over een data-objecten maken met getters en setters of een generieker object maken wat automatisch obgebouwd wordt aan de hand van de database. Ik ga niet de hele discussie hier herhalen, maar we hebben gekozen voor de wat arbeidsintenssievere getters en setters methode.</p>
+
+<p>Om het allemaal wat minder werk te maken heb ik vandaag een PHP5 class generator geschreven. Hier kan je door het invoeren van de klassenaam en de attributen een gehele klasse laten genereren. Je kunt hem <a href="http://www.tietema.net/generator.php">hier</a> bekijken.</p>
+
+<p>Hij is erg simpel doch doeltreffend. Feedback is van harte welkom. :-)</p>
+
+<p>PS. Soms redirect hij fout terug naar mijn blog. Volgens mij is dit een tijdelijk probleem aangezien ik net wat DNS dingen in mijn blog heb veranderd. Gewoon nog een paar keer proberen en dan doet hij het wel :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHP certificering]]></title>
+    <link href="http://jtietema.github.com/blog/2007/11/19/php-certificering/"/>
+    <updated>2007-11-19T00:00:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2007/11/19/php-certificering</id>
+    <content type="html"><![CDATA[<p>Recentelijk heb ik een proefexamen voor PHP certificering gedaan en gehaald. Het ziet er naar uit dat genoeg kennis in huis heb om het officieele examen te halen.</p>
+
+<p>Certificering is denk ik een belangrijke stap om ons te onderscheiden met ons bedrijf. Er zijn zoveel bedrijven die dit doen en certificering geeft jouw dan net dat beetje extra wat je nodig kan hebben om de rest voor te blijven.</p>
+
+<p>Kortom binnenkort maar snel eens kijken of ik officieel examen kan doen :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Back to business]]></title>
+    <link href="http://jtietema.github.com/blog/2007/10/28/back-to-business/"/>
+    <updated>2007-10-28T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2007/10/28/back-to-business</id>
+    <content type="html"><![CDATA[<p>Had afgelopen week vakantie en ben de hele week wezen zweefvliegen. Ik heb nu 20 starts gemaakt en mag bijna alles zelf doen in de cockpit. :-) Nu begint de winter stop dus zal tot volgend jaar moeten wachten voordat ik solo mag.</p>
+
+<p>Nu is het weer tijd om aan de studie te gaan. Komende week heb ik tentamen week en moet dus effe flink studeren komende dagen. De winter is begonnen :-(</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Beste mountain-network.eu]]></title>
+    <link href="http://jtietema.github.com/blog/2007/10/16/beste-mountain-networkeu/"/>
+    <updated>2007-10-16T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2007/10/16/beste-mountain-networkeu</id>
+    <content type="html"><![CDATA[<blockquote> Hallo,In jullie maillijst geven jullie niet aan hoe ik me kan afmelden.
+Ik wil ten eerste melden dat dat wettelijk verplicht is (<a href="http://www.wetboek-online.nl/wet/Tw/11.7.html">zie artikel 3b</a>)
+en
+ten tweede wil ik me graag afmelden. Zouden jullie mij kunnen vertellen hoe ik dat moet doen?
+
+Groeten</blockquote>
+
+
+<p>Zo dat wou ik even met jullie delen. Mijn grijns moment van de dag :-D</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Relax ...]]></title>
+    <link href="http://jtietema.github.com/blog/2007/10/15/relax/"/>
+    <updated>2007-10-15T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2007/10/15/relax</id>
+    <content type="html"><![CDATA[<p>Beetje in de relax modus op het moment. Ben de afgelopen dagen ziek geweest en heb dus niet veel uitgespookt.</p>
+
+<p>Beetje in between opdrachten op het moment voor mijn bedrijf. Dat is wel even lekker. Tijd om een beetje orde op zaken te stellen. Administratie doen, kamer opruimen etc. Dingen die ik al weken wil doen, maar geen tijd voor gehad heb.</p>
+
+<p>Komende week ga ik lekker een paar dagen zweefvliegen in mijn herfstvakantie. Toch zo relaxed dat HBO :-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Website performance the Yahoo way]]></title>
+    <link href="http://jtietema.github.com/blog/2007/10/03/website-performance-the-yahoo-way/"/>
+    <updated>2007-10-03T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2007/10/03/website-performance-the-yahoo-way</id>
+    <content type="html"><![CDATA[<p>Een tijdje terug had <a href="http://mattijs.voidwalkers.nl">mattijs</a> een linkje gepost naar een video van Yahoo waarin <a href="http://stevesouders.com">Steve Souders</a> een praatje hield over website performance vanuit het gebruikers perspectief.
+Omdat ik het een interessant praatje vond en het niet meer op de site van mattijs te vinden is, post ik het hier nog maar even voor geinterresseerden.
+<embed src="http://us.i1.yimg.com/cosmos.bcst.yahoo.com/player/media/swf/FLVVideoSolo.swf" flashvars="id=3880720&amp;emailUrl=http%3A%2F%2Fvideo.yahoo.com%2Futil%2Fmail%3Fei%3DUTF-8%26vid%3D1040890&amp;imUrl=http%253A%252F%252Fvideo.yahoo.com%252Fvideo%252Fplay%253Fei%253DUTF-8%2526vid%253D1040890&amp;imTitle=Steve%2BSouders%253A%2B%2526quot%253BHigh%2BPerformance%2BWeb%2BSites%253A%2B14%2BRules%2Bfor%2BFaster%2BPages%2526quot%253B&amp;searchUrl=http://video.yahoo.com/search/video?p=&amp;profileUrl=http://video.yahoo.com/video/profile?yid=&amp;creatorValue=ZXJpY21pcmFnbGlh&amp;vid=1040890" type="application/x-shockwave-flash" height="350" width="425"></embed></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Desktop search]]></title>
+    <link href="http://jtietema.github.com/blog/2007/09/28/desktop-search/"/>
+    <updated>2007-09-28T00:00:00+02:00</updated>
+    <id>http://jtietema.github.com/blog/2007/09/28/desktop-search</id>
+    <content type="html"><![CDATA[<p>Dit is een onderwerp wat mij steeds meer begint te irriteren. Het is helemaal hot op de linux desktop. Van die kleine programma&#8217;tjes die al je bestanden indexeren en dan kun je er doorheen zoeken.
+Opzich prima idee zou je zeggen.
+Het probleem zit hem alleen in het volgende. Naar mijn idee heeft niet iedereen het nodig. Het wordt tegenwoordig standaard geinstalleerd en eet ontzettend veel cpu kracht en hd tijd. Dit vind ik best wel vervelend, want het maakt mijn OS traag. Het idee is dat hij dit alleen doet als de pc idle is, maar ik ervaar dat heel anders. Het duurt bij mij erg lang voordat het systeem reageert.
+Dit alles leid ertoe dat ik tegenwoordig alle desktopsearch deamons en applicaties vrolijk uninstall na een nieuwe installatie van mijn kubuntu. Persoonlijk vind ik niet dat dit thuis hoort in de default install van een linux desktop. Ik kan zelf prima mijn bestanden terugvinden en ik denk het merendeel van de linux gebruikers kunnen dat ook.
+Kortom ik zou het graag als optie zien ipv als standaard.</p>
+]]></content>
+  </entry>
+  
+</feed>
