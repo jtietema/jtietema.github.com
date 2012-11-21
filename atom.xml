@@ -4,7 +4,7 @@
   <title><![CDATA[Jeroen Tietema]]></title>
   <link href="http://jtietema.github.com/atom.xml" rel="self"/>
   <link href="http://jtietema.github.com/"/>
-  <updated>2012-11-21T17:56:30+01:00</updated>
+  <updated>2012-11-21T19:47:15+01:00</updated>
   <id>http://jtietema.github.com/</id>
   <author>
     <name><![CDATA[Jeroen Tietema]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[On Android fragmentation]]></title>
+    <link href="http://jtietema.github.com/blog/2012/11/09/on-android-fragmentation/"/>
+    <updated>2012-11-09T16:48:00+01:00</updated>
+    <id>http://jtietema.github.com/blog/2012/11/09/on-android-fragmentation</id>
+    <content type="html"><![CDATA[<p>As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. From a media point of view the question is understandable. There are suposably a lot to do about Android fragmentation. Every once in a while stories about the subject dominate the news.
+But as an software developer and every day Android developer the question always suprisses me a bit.</p>
+
+<h2>Nothing new</h2>
+
+<p>Before I was into Android development, I build web-sites and web-applications. And I don&#8217;t recall people asking me about how to deal with all the screensizes and all the different browser versions. Ok, there was IE 6 off course, but somehow everybody had some sort of understanding about IE 6 and what we as developers thought about it.</p>
+
+<p>Similar is the situation when developing aplications for the desktop. Different versions of the OS, different screensizes, different hardware. Nobody seems to wonder how the developers of MS Office have to cope with it all.
+I my opinion fragmentation is nothing new. It&#8217;s more unique that you do not have it on iOS (depends on you definition of course).</p>
+
+<p>So how does fragmentation manifest itself on Android and is it really a problem?</p>
+
+<h2>Screen sizes</h2>
+
+<p>This is the obvious one. This might look like a big problem, but I think it actually isn&#8217;t. Why? Because first of all Android gives you a lot of tools to deal with this. Think of the densities (LDPI, MDPI, HDPI, etc..) and the layouts you can override. Second when you provide assets for the different densities and specify all your dimensions in dp&#8217;s (density independent pixels) you will discover that most screens have roughly the same aspect ratio. Now you just test the on the smallest screen you want to support (say HTC Wildfire) and on the biggest screen you want to support (Samsung Galaxy S III). If it looks good on both you&#8217;re done, if not tweak a bit (mostly for the small screen).</p>
+
+<p>What about tablets? Most clients I worked with in Europe are not yet paying for a tablet layout, but if you have to build a hybrid app, than the layout variants are your friend.</p>
+
+<h2>Different versions of Android (API levels)</h2>
+
+<p>This is also a problem on iOS, but on Android it&#8217;s bigger because vendors update slowly or not at all to new versions of Android. Therefore there are more different versions of Android availible in the wild than versions of iOS.</p>
+
+<h2>Vendor specific bugs</h2>
+
+<p>This is a real problem but fortunately also very rare in my experience. I have encountered this problem only once. It was an old HTC phone running Android 2.2 and it didn&#8217;t want to parse a date while de date format was exactly as specified.</p>
+
+<p>The team had a really though time finding the bug, but that was because the exception got consumed by a catch clause (which wasn&#8217;t intended to cacth it). Working around such bugs has been easy but detecting them can be a pain if disregard best practices. In other words never write <code>catch (Exception e) {}</code>, it is evil.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Virtualizing my development environment]]></title>
@@ -344,19 +379,6 @@ Groeten</blockquote>
     <content type="html"><![CDATA[<p>Een tijdje terug had <a href="http://mattijs.voidwalkers.nl">mattijs</a> een linkje gepost naar een video van Yahoo waarin <a href="http://stevesouders.com">Steve Souders</a> een praatje hield over website performance vanuit het gebruikers perspectief.
 Omdat ik het een interessant praatje vond en het niet meer op de site van mattijs te vinden is, post ik het hier nog maar even voor geinterresseerden.
 <embed src="http://us.i1.yimg.com/cosmos.bcst.yahoo.com/player/media/swf/FLVVideoSolo.swf" flashvars="id=3880720&amp;emailUrl=http%3A%2F%2Fvideo.yahoo.com%2Futil%2Fmail%3Fei%3DUTF-8%26vid%3D1040890&amp;imUrl=http%253A%252F%252Fvideo.yahoo.com%252Fvideo%252Fplay%253Fei%253DUTF-8%2526vid%253D1040890&amp;imTitle=Steve%2BSouders%253A%2B%2526quot%253BHigh%2BPerformance%2BWeb%2BSites%253A%2B14%2BRules%2Bfor%2BFaster%2BPages%2526quot%253B&amp;searchUrl=http://video.yahoo.com/search/video?p=&amp;profileUrl=http://video.yahoo.com/video/profile?yid=&amp;creatorValue=ZXJpY21pcmFnbGlh&amp;vid=1040890" type="application/x-shockwave-flash" height="350" width="425"></embed></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Desktop search]]></title>
-    <link href="http://jtietema.github.com/blog/2007/09/28/desktop-search/"/>
-    <updated>2007-09-28T00:00:00+02:00</updated>
-    <id>http://jtietema.github.com/blog/2007/09/28/desktop-search</id>
-    <content type="html"><![CDATA[<p>Dit is een onderwerp wat mij steeds meer begint te irriteren. Het is helemaal hot op de linux desktop. Van die kleine programma&#8217;tjes die al je bestanden indexeren en dan kun je er doorheen zoeken.
-Opzich prima idee zou je zeggen.
-Het probleem zit hem alleen in het volgende. Naar mijn idee heeft niet iedereen het nodig. Het wordt tegenwoordig standaard geinstalleerd en eet ontzettend veel cpu kracht en hd tijd. Dit vind ik best wel vervelend, want het maakt mijn OS traag. Het idee is dat hij dit alleen doet als de pc idle is, maar ik ervaar dat heel anders. Het duurt bij mij erg lang voordat het systeem reageert.
-Dit alles leid ertoe dat ik tegenwoordig alle desktopsearch deamons en applicaties vrolijk uninstall na een nieuwe installatie van mijn kubuntu. Persoonlijk vind ik niet dat dit thuis hoort in de default install van een linux desktop. Ik kan zelf prima mijn bestanden terugvinden en ik denk het merendeel van de linux gebruikers kunnen dat ook.
-Kortom ik zou het graag als optie zien ipv als standaard.</p>
 ]]></content>
   </entry>
   

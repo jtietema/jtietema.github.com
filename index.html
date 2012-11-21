@@ -9,7 +9,7 @@
   <meta name="author" content="Jeroen Tietema">
 
   
-  <meta name="description" content="Virtualizing My Development Environment Last week I have been busy moving my development environment from my laptop to a virtual server running on &hellip;">
+  <meta name="description" content="On Android Fragmentation As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. From &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11879991-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -91,6 +103,65 @@
   </header>
   <section id="main">
       
+  
+  
+    <article class="post">
+      <div class="sharing-box">
+  
+  
+  
+</div>
+
+      
+  <header>
+    
+      <h2 class="entry-title">
+        
+        <a href="/blog/2012/11/09/on-android-fragmentation/">On Android Fragmentation</a>
+        
+      </h2>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+  <p>As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. From a media point of view the question is understandable. There are suposably a lot to do about Android fragmentation. Every once in a while stories about the subject dominate the news.
+But as an software developer and every day Android developer the question always suprisses me a bit.</p>
+
+<h2>Nothing new</h2>
+
+<p>Before I was into Android development, I build web-sites and web-applications. And I don&#8217;t recall people asking me about how to deal with all the screensizes and all the different browser versions. Ok, there was IE 6 off course, but somehow everybody had some sort of understanding about IE 6 and what we as developers thought about it.</p>
+
+<p>Similar is the situation when developing aplications for the desktop. Different versions of the OS, different screensizes, different hardware. Nobody seems to wonder how the developers of MS Office have to cope with it all.
+I my opinion fragmentation is nothing new. It&#8217;s more unique that you do not have it on iOS (depends on you definition of course).</p>
+
+<p>So how does fragmentation manifest itself on Android and is it really a problem?</p>
+
+<h2>Screen sizes</h2>
+
+<p>This is the obvious one. This might look like a big problem, but I think it actually isn&#8217;t. Why? Because first of all Android gives you a lot of tools to deal with this. Think of the densities (LDPI, MDPI, HDPI, etc..) and the layouts you can override. Second when you provide assets for the different densities and specify all your dimensions in dp&#8217;s (density independent pixels) you will discover that most screens have roughly the same aspect ratio. Now you just test the on the smallest screen you want to support (say HTC Wildfire) and on the biggest screen you want to support (Samsung Galaxy S III). If it looks good on both you&#8217;re done, if not tweak a bit (mostly for the small screen).</p>
+
+<p>What about tablets? Most clients I worked with in Europe are not yet paying for a tablet layout, but if you have to build a hybrid app, than the layout variants are your friend.</p>
+
+<h2>Different versions of Android (API levels)</h2>
+
+<p>This is also a problem on iOS, but on Android it&#8217;s bigger because vendors update slowly or not at all to new versions of Android. Therefore there are more different versions of Android availible in the wild than versions of iOS.</p>
+
+<h2>Vendor specific bugs</h2>
+
+<p>This is a real problem but fortunately also very rare in my experience. I have encountered this problem only once. It was an old HTC phone running Android 2.2 and it didn&#8217;t want to parse a date while de date format was exactly as specified.</p>
+
+<p>The team had a really though time finding the bug, but that was because the exception got consumed by a catch clause (which wasn&#8217;t intended to cacth it). Working around such bugs has been easy but detecting them can be a pain if disregard best practices. In other words never write <code>catch (Exception e) {}</code>, it is evil.</p>
+
+  
+  
+
+
+    </article>
   
   
     <article class="post">
@@ -465,58 +536,6 @@
   <p>What does one do when he is bored? Write a wordpress plugin. I wanted to update my blog for some time now with my ZCE logo, so I thought why not write a plugin to do so. I noticed that there was a text widget, which doesn&#8217;t make it much harder to update your site with the logo, but that is no fun so <a title="ZCE widget" href="/zce-widget">here is a special ZCE widget</a>.</p>
 
 <p>Feedback is most welcome. Enjoy.</p>
-
-  
-  
-
-
-    </article>
-  
-  
-    <article class="post">
-      <div class="sharing-box">
-  
-  
-  
-</div>
-
-      
-  <header>
-    
-      <h2 class="entry-title">
-        
-        <a href="/blog/2008/06/24/update/">Update</a>
-        
-      </h2>
-    
-    
-      <p class="meta">
-        
-      </p>
-    
-  </header>
-
-
-  <p>So it&#8217;s been to long since my last update. I&#8217;ve been quite busy with my study as the vacation approaches. Below I&#8217;ll sum up some things that have kept me busy.</p>
-
-<ul>
-    <li>Zend Certification: I passed, as most of you know by now. Will have to find time to integrate a button/link to <a title="My Profile" href="http://www.zend.com/store/education/certification/authenticate.php?ClientCandidateID=ZEND007565&amp;RegistrationID=225069027">my profile in the Zend yellow pages</a>.</li>
-    <li>Hardware &amp; KDE: I&#8217;ve received my new computer I ordered from <a title="ZaReason" href="http://www.zareason.de/">ZaReason</a> and it is awesome. I installed KDE 4.1 beta 1 and am very happy with how well it runs. Only Konqueror and Dolphin crash a lot, but that will probably to improve over time. In the meantime, Firefox 3 and Opera 9.5 do the job just fine.</li>
-    <li>Voidwalkers: As the pressure of incoming projects and stuff is dropping, we finally have some time to think of new innovative things. We exploring the possibilities of generating Zend Framework applications. At the moment we have a small plugin based command-line application and have some handy plugins that make our live easier. For instance we can generate a project structure (directories and so) and we can generate table classes from the database (with relations). So that&#8217;s pretty cool. So controllers and views with basic form operations are next :-)</li>
-    <li>Study: I&#8217;ve had my last exams. Will have to finish my last assignments the next two weeks. After the summer I will start my internship at <a title="Hippo" href="http://www.hippo.nl">hippo</a>. I&#8217;m really looking forward to that as the company looks really as a nice place to work. Will post some more updates as the appear.</li>
-</ul>
-
-
-<p>So some things I am looking forward to:</p>
-
-<ul>
-    <li>Vacation! Relaxation and road tripping with my girlfriend.</li>
-    <li>KDE 4.1 Release @ 29 July. KDE 4 will finally be ready for general purpose use.</li>
-    <li>More time to work on personal projects.</li>
-</ul>
-
-
-<p>So time for me to get productive again. :-)</p>
 
   
   
