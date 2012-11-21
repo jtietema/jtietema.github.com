@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>On Android fragmentation - Jeroen Tietema</title>
+  <meta name="author" content="Jeroen Tietema">
+
+  
+  <meta name="description" content="On Android Fragmentation Nov 21st, 2012 by Jeroen Tietema As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeroen.tietema.net/blog/2012/11/21/on-android-fragmentation/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jeroen Tietema" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11879991-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <header role="banner" id="sidebar">
+    <!-- Logo -->
+<aside id="logo" class="clearfix">
+  <div class="clearfix">
+    <a href="/">Jeroen Tietema</a>
+  </div>
+</aside>
+
+<ul id="menu">
+
+  <li class="title">
+    <h1 id="title"><a href="/">Jeroen Tietema</a></h1>
+  </li>
+
+
+  <li class="subtitle">
+    <h2 id="subtitle">/dev/null</h2>
+  </li>
+
+  <li class="link">
+    <a href="/about/">about</a>
+  </li>
+
+
+  <li class="link">
+    <a href="http://github.com/jtietema/">github</a>
+  </li>
+
+  <li class="link rss">
+    <a href="/atom.xml">rss feed</a>
+  </li>
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jeroen.tietema.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<!-- Octopress Love -->
+<aside id="octopress_linkback">
+  <a href="http://octopress.org/">
+    <span class="unicode_square">
+      <span class="unicode_circle">
+        &nbsp;
+      </span>
+    </span>
+    <span class="octopress">Powered by Octopress</span>
+  </a>
+</aside>
+
+  </header>
+  <section id="main">
+    <article class="post">
+  <div class="sharing-box">
+  
+  
+  
+</div>
+
+  
+  <header>
+    
+      <h2 class="entry-title">On Android Fragmentation</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T21:07:00+01:00" pubdate data-updated="true">Nov 21<span>st</span>, 2012</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
+      </p>
+    
+  </header>
+
+
+<p>As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. Judging from the attention it gets in the media, the question is understandable. There is supposedly a lot to do about Android fragmentation. Every once in a while stories about the subject dominate the news.
+But as an software developer and every day Android developer the question always surprises me a bit.</p>
+
+<h2>Nothing new here</h2>
+
+<p>Before I was into Android development, I build websites and web-applications. And I don&#8217;t recall people asking me about how to deal with all the screen sizes and all the different browser versions. There was IE6 of course, but somehow everybody had some sort of understanding that IE6 was the only exception.</p>
+
+<p>Similar is the situation when developing applications for the desktop. Different versions of the OS, different screen sizes, different hardware. Nobody seems to wonder how the developers of MS Office have to cope with it all.
+I my opinion fragmentation is nothing new. It&#8217;s more unique that you do not have to worry about it (like on iOS in a way).</p>
+
+<p>So how does fragmentation manifest itself on Android and is it really a that bad?</p>
+
+<h2>Screen sizes</h2>
+
+<p>This is the obvious one. It might look like a big problem, but I think it actually isn&#8217;t.
+First of all because Android gives you a lot of tools to deal with different screen sizes. <a href="http://developer.android.com/training/multiscreen/screendensities.html" title="Supporting Different Densities">Think of the densities </a> (LDPI, MDPI, HDPI, etc..) and <a href="http://developer.android.com/training/multiscreen/screensizes.html" title="Supporting Different Screen Sizes">the layouts you can override </a>.</p>
+
+<p>Second when you specify all your dimensions in dp&#8217;s (<a href="http://developer.android.com/guide/practices/screens_support.html#density-independence" title="Density independence">density independent pixels</a>) you will discover that most screens have roughly the same aspect ratio. Now you just test the on the smallest screen you want to support (say HTC Wildfire) and on the biggest screen you want to support (Samsung Galaxy S III). If it looks good on both you&#8217;re done, if not tweak a bit (mostly for the small screen).</p>
+
+<p>What about tablets? Most clients I worked with in Europe are not yet paying for a tablet layout, but if you have to build a hybrid application, than the layout variants are your friend. There are a lot of guides on the <a href="http://developer.android.com">http://developer.android.com</a> that <a href="http://developer.android.com/training/multiscreen/adaptui.html" title="Implementing Adaptive UI Flows">explain to you how you can build an application that adapts to the users available screen size </a>.</p>
+
+<h2>Different versions of Android (API levels)</h2>
+
+<p>This is also a problem on iOS, but on Android it&#8217;s bigger because vendors update slowly or not at all to new versions of Android. Therefore there are more different versions of Android available in the wild than versions of iOS.</p>
+
+<p>In my opinion this is the biggest problem with Android fragmentation. In practice I&#8217;m still writing apps for Android 2.2 and <a href="http://developer.android.com/about/dashboards/index.html" title="Platform versions">judging from the market share </a> it is going to take a while before we can leave Android 2.X behind. 2.3.X has a whopping 54% market share. This means it is gonna take at least 3 more years before we can even think about developing for Android 4.X only. This is sad as the Android 4 SDK brings a lot of good new stuff, but the best stuff is backported by the <a href="http://developer.android.com/tools/extras/support-library.html" title="Support library">support library </a> or efforts like <a href="http://actionbarsherlock.com" title="Actionbar Sherlock">Actionbar Sherlock </a>. So it is manageable.</p>
+
+<h2>Vendor specific bugs</h2>
+
+<p>This is a real problem but fortunately also very rare in my experience. I have encountered this problem only once. It was an old HTC phone running Android 2.2 and it didn&#8217;t want to parse a date while the date format was exactly as specified.</p>
+
+<p>The team had a really though time finding the bug, but that was because the exception got consumed by a catch clause (which wasn&#8217;t intended to catch it). Working around such bugs has been easy but detecting them can be a pain if disregard best practices. In other words never write <code>catch (Exception e) {}</code>, it is evil.</p>
+
+<h2>Conclusion</h2>
+
+<p>This has become a pretty long post. This may lead you to believe that fragmentation is a big problem, as it seems you have to account for a lot of things. I am certainly not saying that the fragmentation does not exist and you certainly have deal with it. But that said, when you stick to the best practices and build your app &#8220;the right way&#8482;&#8221; I find it doesn&#8217;t take a lot of extra effort take make your app run on all the devices and scale across all the screen sizes.</p>
+
+
+
+</article>
+
+  <section class="comments">
+    <h2>Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+    <nav role="navigation" id="pagination">
+
+</nav>
+  </section>
+  
+
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeroentietema';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeroen.tietema.net/blog/2012/11/21/on-android-fragmentation/';
+        var disqus_url = 'http://jeroen.tietema.net/blog/2012/11/21/on-android-fragmentation/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

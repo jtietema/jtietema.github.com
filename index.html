@@ -9,7 +9,7 @@
   <meta name="author" content="Jeroen Tietema">
 
   
-  <meta name="description" content="On Android Fragmentation As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. From &hellip;">
+  <meta name="description" content="On Android Fragmentation Nov 21st, 2012 by Jeroen Tietema As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jtietema.github.com/">
+  <link rel="canonical" href="http://jeroen.tietema.net/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -82,7 +82,7 @@
 
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:jtietema.github.com" />
+    <input type="hidden" name="q" value="site:jeroen.tietema.net" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -117,45 +117,72 @@
     
       <h2 class="entry-title">
         
-        <a href="/blog/2012/11/09/on-android-fragmentation/">On Android Fragmentation</a>
+        <a href="/blog/2012/11/21/on-android-fragmentation/">On Android Fragmentation</a>
         
       </h2>
     
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T21:07:00+01:00" pubdate data-updated="true">Nov 21<span>st</span>, 2012</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
 
 
-  <p>As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. From a media point of view the question is understandable. There are suposably a lot to do about Android fragmentation. Every once in a while stories about the subject dominate the news.
-But as an software developer and every day Android developer the question always suprisses me a bit.</p>
+  <p>As an Android developer I get asked a lot about fragmentation on Android and if it&#8217;s doable in dealing with it. Judging from the attention it gets in the media, the question is understandable. There is supposedly a lot to do about Android fragmentation. Every once in a while stories about the subject dominate the news.
+But as an software developer and every day Android developer the question always surprises me a bit.</p>
 
-<h2>Nothing new</h2>
+<h2>Nothing new here</h2>
 
-<p>Before I was into Android development, I build web-sites and web-applications. And I don&#8217;t recall people asking me about how to deal with all the screensizes and all the different browser versions. Ok, there was IE 6 off course, but somehow everybody had some sort of understanding about IE 6 and what we as developers thought about it.</p>
+<p>Before I was into Android development, I build websites and web-applications. And I don&#8217;t recall people asking me about how to deal with all the screen sizes and all the different browser versions. There was IE6 of course, but somehow everybody had some sort of understanding that IE6 was the only exception.</p>
 
-<p>Similar is the situation when developing aplications for the desktop. Different versions of the OS, different screensizes, different hardware. Nobody seems to wonder how the developers of MS Office have to cope with it all.
-I my opinion fragmentation is nothing new. It&#8217;s more unique that you do not have it on iOS (depends on you definition of course).</p>
+<p>Similar is the situation when developing applications for the desktop. Different versions of the OS, different screen sizes, different hardware. Nobody seems to wonder how the developers of MS Office have to cope with it all.
+I my opinion fragmentation is nothing new. It&#8217;s more unique that you do not have to worry about it (like on iOS in a way).</p>
 
-<p>So how does fragmentation manifest itself on Android and is it really a problem?</p>
+<p>So how does fragmentation manifest itself on Android and is it really a that bad?</p>
 
 <h2>Screen sizes</h2>
 
-<p>This is the obvious one. This might look like a big problem, but I think it actually isn&#8217;t. Why? Because first of all Android gives you a lot of tools to deal with this. Think of the densities (LDPI, MDPI, HDPI, etc..) and the layouts you can override. Second when you provide assets for the different densities and specify all your dimensions in dp&#8217;s (density independent pixels) you will discover that most screens have roughly the same aspect ratio. Now you just test the on the smallest screen you want to support (say HTC Wildfire) and on the biggest screen you want to support (Samsung Galaxy S III). If it looks good on both you&#8217;re done, if not tweak a bit (mostly for the small screen).</p>
+<p>This is the obvious one. It might look like a big problem, but I think it actually isn&#8217;t.
+First of all because Android gives you a lot of tools to deal with different screen sizes. <a href="http://developer.android.com/training/multiscreen/screendensities.html" title="Supporting Different Densities">Think of the densities </a> (LDPI, MDPI, HDPI, etc..) and <a href="http://developer.android.com/training/multiscreen/screensizes.html" title="Supporting Different Screen Sizes">the layouts you can override </a>.</p>
 
-<p>What about tablets? Most clients I worked with in Europe are not yet paying for a tablet layout, but if you have to build a hybrid app, than the layout variants are your friend.</p>
+<p>Second when you specify all your dimensions in dp&#8217;s (<a href="http://developer.android.com/guide/practices/screens_support.html#density-independence" title="Density independence">density independent pixels</a>) you will discover that most screens have roughly the same aspect ratio. Now you just test the on the smallest screen you want to support (say HTC Wildfire) and on the biggest screen you want to support (Samsung Galaxy S III). If it looks good on both you&#8217;re done, if not tweak a bit (mostly for the small screen).</p>
+
+<p>What about tablets? Most clients I worked with in Europe are not yet paying for a tablet layout, but if you have to build a hybrid application, than the layout variants are your friend. There are a lot of guides on the <a href="http://developer.android.com">http://developer.android.com</a> that <a href="http://developer.android.com/training/multiscreen/adaptui.html" title="Implementing Adaptive UI Flows">explain to you how you can build an application that adapts to the users available screen size </a>.</p>
 
 <h2>Different versions of Android (API levels)</h2>
 
-<p>This is also a problem on iOS, but on Android it&#8217;s bigger because vendors update slowly or not at all to new versions of Android. Therefore there are more different versions of Android availible in the wild than versions of iOS.</p>
+<p>This is also a problem on iOS, but on Android it&#8217;s bigger because vendors update slowly or not at all to new versions of Android. Therefore there are more different versions of Android available in the wild than versions of iOS.</p>
+
+<p>In my opinion this is the biggest problem with Android fragmentation. In practice I&#8217;m still writing apps for Android 2.2 and <a href="http://developer.android.com/about/dashboards/index.html" title="Platform versions">judging from the market share </a> it is going to take a while before we can leave Android 2.X behind. 2.3.X has a whopping 54% market share. This means it is gonna take at least 3 more years before we can even think about developing for Android 4.X only. This is sad as the Android 4 SDK brings a lot of good new stuff, but the best stuff is backported by the <a href="http://developer.android.com/tools/extras/support-library.html" title="Support library">support library </a> or efforts like <a href="http://actionbarsherlock.com" title="Actionbar Sherlock">Actionbar Sherlock </a>. So it is manageable.</p>
 
 <h2>Vendor specific bugs</h2>
 
-<p>This is a real problem but fortunately also very rare in my experience. I have encountered this problem only once. It was an old HTC phone running Android 2.2 and it didn&#8217;t want to parse a date while de date format was exactly as specified.</p>
+<p>This is a real problem but fortunately also very rare in my experience. I have encountered this problem only once. It was an old HTC phone running Android 2.2 and it didn&#8217;t want to parse a date while the date format was exactly as specified.</p>
 
-<p>The team had a really though time finding the bug, but that was because the exception got consumed by a catch clause (which wasn&#8217;t intended to cacth it). Working around such bugs has been easy but detecting them can be a pain if disregard best practices. In other words never write <code>catch (Exception e) {}</code>, it is evil.</p>
+<p>The team had a really though time finding the bug, but that was because the exception got consumed by a catch clause (which wasn&#8217;t intended to catch it). Working around such bugs has been easy but detecting them can be a pain if disregard best practices. In other words never write <code>catch (Exception e) {}</code>, it is evil.</p>
+
+<h2>Conclusion</h2>
+
+<p>This has become a pretty long post. This may lead you to believe that fragmentation is a big problem, as it seems you have to account for a lot of things. I am certainly not saying that the fragmentation does not exist and you certainly have deal with it. But that said, when you stick to the best practices and build your app &#8220;the right way&#8482;&#8221; I find it doesn&#8217;t take a lot of extra effort take make your app run on all the devices and scale across all the screen sizes.</p>
 
   
   
@@ -183,6 +210,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-14T00:00:00+02:00" pubdate data-updated="true">Aug 14<span>th</span>, 2009</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -248,6 +293,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-25T00:00:00+01:00" pubdate data-updated="true">Mar 25<span>th</span>, 2009</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -285,6 +348,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-17T00:00:00+01:00" pubdate data-updated="true">Feb 17<span>th</span>, 2009</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -320,6 +401,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-12T00:00:00+01:00" pubdate data-updated="true">Jan 12<span>th</span>, 2009</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -357,6 +456,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-31T00:00:00+01:00" pubdate data-updated="true">Dec 31<span>st</span>, 2008</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -394,6 +511,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T00:00:00+01:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -448,6 +583,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T00:00:00+01:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -483,6 +636,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-17T00:00:00+02:00" pubdate data-updated="true">Oct 17<span>th</span>, 2008</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -528,6 +699,24 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
     
       <p class="meta">
         
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-27T00:00:00+02:00" pubdate data-updated="true">Jun 27<span>th</span>, 2008</time>
+        
+        
+  
+
+<span class="byline author vcard">by <span class="fn">Jeroen Tietema</span></span>
+
       </p>
     
   </header>
@@ -555,6 +744,19 @@ I my opinion fragmentation is nothing new. It&#8217;s more unique that you do no
   
 
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeroentietema';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
